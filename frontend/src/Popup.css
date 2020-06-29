@@ -1,0 +1,26 @@
+.popupContainer {
+    width: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    border-radius: 1px;
+    padding: 20px;
+    padding-top: 0px;
+    align-items: center;
+}
+
+.popupHeader {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    text-align: center;
+}
+
+.popupBody {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+}
+
+.taskList {
+    display: grid;
+    grid-row-gap: 10px;
+}

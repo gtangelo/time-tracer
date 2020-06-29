@@ -1,0 +1,30 @@
+.taskContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.taskInfo {
+
+}
+
+.taskActions {
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskActionBtn {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.taskActionBtn:hover {
+    opacity: 1;
+}
