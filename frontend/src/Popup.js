@@ -7,7 +7,10 @@ import Task from './Task.js';
 export default class Popup extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {tasks: ["Task 1", "Task 2"]};
+        this.state = {
+            
+            tasks: ["Task 1", "Task 2"],
+        };
     }
     
     render() {
@@ -17,7 +20,12 @@ export default class Popup extends React.Component {
         return (
             <div className="popupContainer">
                 <div className="popupHeader">
-                    Time Tracer
+                    <p className="popupTitle"> Time Tracer </p>
+                    <div className="popupActions">
+                        <a className="popupAddTaskButton" href="#">
+                        
+                        </a>
+                    </div>
                 </div>
                 <div className="popupBody">
                     <div className="taskList">
