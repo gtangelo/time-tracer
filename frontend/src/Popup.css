@@ -20,13 +20,35 @@
     font-size: 20px;
 }
 
-.popupAddTaskButton {
-    width: 50px;
-    height: 50px;
-    background-color: red;
+.newTaskBtnShow {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    transition: 0.3s ease-in-out;
+    transform: rotate(0deg);
+}
+
+.newTaskBtnShow:hover {
+    opacity: 1;
+}
+
+.newTaskBtnHide {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    transition: 0.3s ease-in-out;
+    transform: rotate(45deg);
+}
+
+.newTaskBtnHide:hover {
+    opacity: 1;
 }
 
 .taskList {
     display: grid;
     grid-row-gap: 10px;
+}
+
+.addTaskEnter {
+    
 }
