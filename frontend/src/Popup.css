@@ -18,13 +18,29 @@
 .popupBody {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 20px;
+    border-top: 2px solid rgba(0,0,0,0.5);
+    padding: 5px;
+}
+
+.newTaskMenuShow {
+    height: 200px;
+    background-color: rgba(0,0,0,0.05);
+    transition: 1s height ease-in-out;
+    border-top: 2px solid rgba(0,0,0,0.5);
+}
+
+.newTaskMenuHide {
+    height: 0px;
+    background-color: rgba(0,0,0,0.05);
+    transition: height 1s ease-in-out , border-width 1s linear;
+    border-top: 0px solid rgba(0,0,0,0.5);
 }
 
 .newTaskBtnShow {
     width: 20px;
     height: 20px;
     opacity: 0.5;
-    transition: 0.3s ease-in-out;
+    transition: 1s transform ease-in-out;
     transform: rotate(0deg);
 }
 
@@ -36,7 +52,7 @@
     width: 20px;
     height: 20px;
     opacity: 0.5;
-    transition: 0.3s ease-in-out;
+    transition: 1s transform ease-in-out;
     transform: rotate(45deg);
 }
 

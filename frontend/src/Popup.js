@@ -20,13 +20,6 @@ export default class Popup extends React.Component {
     
         const taskItems = this.state.tasks.map(taskName => <Task taskName={taskName}/>); 
         
-        const animClassNames = {
-            enter: "addTaskEnter",
-            enterActive: "addTaskEnterActive",
-            exit: "addTaskExit",
-            exitActive: "addTaskExitActive"
-        };
-        
         return (
             <div className="popupContainer">
                 <div className="popupHeader">
@@ -36,6 +29,8 @@ export default class Popup extends React.Component {
                                 <img src={addBtn} className={"newTaskBtn" + (this.state.showAddTask ? "Hide" : "Show")}/>
                             </a>
                         </div>
+                </div>
+                <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
                     
                 </div>
                 <div className="popupBody">
