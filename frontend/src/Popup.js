@@ -1,11 +1,14 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group'; 
+import Fade from 'react-reveal/Fade';
 
 import './Popup.css';
 
 import Task from './Task.js';
 
 import addBtn from './assets/addIcon.png';
+
+import tickBtn from './assets/tickIcon.png';
 
 export default class Popup extends React.Component {
     constructor(props) {
@@ -30,9 +33,28 @@ export default class Popup extends React.Component {
                             </a>
                         </div>
                 </div>
+
+                
                 <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
-                    
-                </div>
+                <Fade delay = {500} >
+                    <form style={{ display: (this.state.showAddTask ? 'block' : 'none') }}>
+                        <label>
+                            <input type="text" name="taskName" placeholder= "Task Name" />
+                        </label>
+                        <label> 
+                            <input type="text" name="WBSName" placeholder= "WBS"/>
+                        </label>
+                        <label> 
+                            <input type="text" name="clientName" placeholder= "Client Name"/>
+                        </label>
+
+                        
+                        <input id = "submit" type="image" src= {tickBtn} alt="Submit">
+                            </input> 
+
+                    </form>
+                </Fade>
+               </div>
                 <div className="popupBody">
                     <div className="taskList">
                         {taskItems}

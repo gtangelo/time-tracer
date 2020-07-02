@@ -29,6 +29,30 @@
     border-top: 2px solid rgba(0,0,0,0.5);
 }
 
+.newTaskMenuShow form {
+   display: block;
+   
+
+}
+
+.newTaskMenuShow form input{
+    width: 100px;
+    
+
+
+}
+
+#submit {
+    
+ 
+    width: 20px;
+    height: 20px;
+    display: block;
+    float:right;
+    margin-top: 100px;
+}
+
+
 .newTaskMenuHide {
     height: 0px;
     background-color: rgba(0,0,0,0.05);
