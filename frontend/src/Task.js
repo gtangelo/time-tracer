@@ -19,6 +19,10 @@ export default class Task extends React.Component {
         this.props.onToggle(this.props.taskId);
     }
     
+    onDelete() {
+        this.props.onDelete(this.props.taskId);
+    }
+    
     render() {
         return (
             <div className="taskContainer">
@@ -27,9 +31,11 @@ export default class Task extends React.Component {
                 </div>
                 <div className="taskActions">
                     <img src={infoBtn} className="taskActionBtn"/>
-                    <img src={delBtn}  className="taskActionBtn"/>
+                    <a href="#" onClick={this.props.onDelete.bind(null, this.props.taskId)}>
+                        <img src={delBtn}  className="taskActionBtn"/>
+                    </a>
                     <a href="#" onClick={this.onToggle}>
-                    <img src={this.state.playing ? pauseBtn : playBtn} className="taskActionBtn"/>
+                        <img src={this.state.playing ? pauseBtn : playBtn} className="taskActionBtn"/>
                     </a>
                 </div>
             </div>
