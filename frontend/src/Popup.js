@@ -13,10 +13,11 @@ export default class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.onToggle = this.onToggle.bind(this);
-        this.state = {
-            showAddTask: false,
-            tasks: [{id: "Task 1", playing: false, time: 0, start: 0}],
-        };
+        this.createNewTask = this.createNewTask.bind(this);
+        this.state = {showAddTask: false, tasks: []};
+        chrome.storage.local.get(['tasks'], result => {
+            this.setState({tasks: result.tasks});
+        });
     }
     
     onToggle(taskId) {
@@ -40,13 +41,12 @@ export default class Popup extends React.Component {
     }
     
     createNewTask() {
-        return;
+        this.setState(prevState => ({tasks: [...prevState.tasks, {id: "Task", playing: false, start: 0, time: 0}]}));
+        chrome.storage.local.set({tasks: this.state.tasks});
     }
     
     render() {
-    
         const taskItems = this.state.tasks.map(task => <Task taskId={task.id} onToggle={this.onToggle}/>); 
-        
         return (
             <div className="popupContainer">
                 <div className="popupHeader">
@@ -58,7 +58,7 @@ export default class Popup extends React.Component {
                         </div>
                 </div>
                 <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
-                    <a href="#" onClick={this.createNewTask()}>
+                    <a href="#" onClick={this.createNewTask}>
                         <img src={tickBtn} className={"tickBtn"}/>
                     </a>
                 </div>
