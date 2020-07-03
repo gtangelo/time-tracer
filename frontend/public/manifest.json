@@ -3,6 +3,10 @@
     "version": "1.0",
     "short_name": "Time Tracer",
     "name": "Time Tracer",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     "permissions": [
         "storage"
     ],

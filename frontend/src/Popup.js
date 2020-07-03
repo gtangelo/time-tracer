@@ -15,29 +15,32 @@ export default class Popup extends React.Component {
         this.onToggle = this.onToggle.bind(this);
         this.createNewTask = this.createNewTask.bind(this);
         this.onDelete = this.onDelete.bind(this);
-        this.state = {showAddTask: false, tasks: {}};
-        chrome.storage.local.get(['tasks'], result => {
-            this.setState({tasks: result.tasks});
+        this.updateTimers = this.updateTimers.bind(this);
+        setInterval(this.updateTimers, 1000);
+        this.state = {showAddTask: false, tasks: {}, taskTimes: {}};
+        chrome.storage.local.get(['tasks', 'taskTimes'], result => {
+            if (result.hasOwnProperty('tasks')) {
+                this.setState({tasks: result.tasks});
+            }
+            if (result.hasOwnProperty('taskTimes')) {
+                this.setState({taskTimes: result.taskTimes});
+            }
         });
     }
     
-    timerUpdate(taskId) {
-        var tasks = this.state.tasks;
-        tasks[taskId].time += 1;
-        this.setState({tasks: tasks}, () => chrome.storage.local.set({tasks: this.state.tasks}));
+    updateTimers() {
+        chrome.storage.local.get(['taskTimes'], result => {
+            if (result.hasOwnProperty('taskTimes')) {
+                this.setState({taskTimes: result.taskTimes});
+            }
+        });
     }
     
     onToggle(taskId) {
         var tasks = this.state.tasks;
-        if (tasks[taskId].playing) {
-            tasks[taskId].playing = false;
-            clearInterval(tasks[taskId].timerId);
-            tasks[taskId].timerId = 0;
-        } else {
-            tasks[taskId].playing = true;
-            tasks[taskId].timerId = setInterval(this.timerUpdate.bind(this, taskId), 60000);
-        }
-        this.setState({tasks: tasks}, () => chrome.storage.local.set({tasks: this.state.tasks}));
+        tasks[taskId].playing = !tasks[taskId].playing;
+        this.setState({tasks: tasks});
+        chrome.storage.local.set({tasks: tasks});
     }
     
     onDelete(taskId) {
@@ -48,12 +51,24 @@ export default class Popup extends React.Component {
     
     createNewTask(taskId) {
         // Add new task to state, and then also to local storage
-        this.setState(prevState => ({tasks: {...prevState.tasks, [taskId]: {playing: false, time: 0}}}));
-        chrome.storage.local.set({tasks: this.state.tasks});
+        chrome.storage.local.set({
+            tasks: {...this.state.tasks, [taskId]: {playing: false}}, 
+            taskTimes: {...this.state.taskTimes, [taskId]: 0}
+        });
+        this.setState(prevState => ({
+            tasks: {...prevState.tasks, [taskId]: {playing: false}}, 
+            taskTimes: {...prevState.taskTimes, [taskId]: 0}
+        }));
     }
     
     render() {
-        const taskItems = Object.keys(this.state.tasks).map(task => <Task taskId={task} onToggle={this.onToggle} onDelete={this.onDelete}/>); 
+        const taskItems = Object.keys(this.state.tasks).map(task => 
+            <Task taskId={task}
+                  playing={this.state.tasks[task].playing}
+                  onToggle={this.onToggle} 
+                  onDelete={this.onDelete}
+                  time={this.state.taskTimes[task]}
+            />); 
         return (
             <div className="popupContainer">
                 <div className="popupHeader">

@@ -10,7 +10,7 @@ import pauseBtn from './assets/deleteIcon.png';
 export default class Task extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {playing: false};
+        this.state = {playing: this.props.playing};
         this.onToggle = this.onToggle.bind(this);
     }
     
@@ -28,6 +28,8 @@ export default class Task extends React.Component {
             <div className="taskContainer">
                 <div className="taskInfo">
                     {this.props.taskId}
+                    <br/>
+                    {this.props.time}
                 </div>
                 <div className="taskActions">
                     <img src={infoBtn} className="taskActionBtn"/>
