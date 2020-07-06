@@ -5,6 +5,7 @@ import TaskForm from './TaskForm.js'
 import './Popup.css';
 
 import Task from './Task.js';
+import Past from './Past.js';
 
 import addBtn from './assets/addIcon.png';
 import tickBtn from './assets/tickIcon.png';
@@ -15,81 +16,90 @@ export default class Popup extends React.Component {
         this.onToggle = this.onToggle.bind(this);
         this.onCreate = this.onCreate.bind(this);
         this.onDelete = this.onDelete.bind(this);
-        this.updateTimers = this.updateTimers.bind(this);
-        setInterval(this.updateTimers, 60000);
-        this.state = {showAddTask: false, tasks: {}, taskTimes: {}};
-        chrome.storage.local.get(['tasks', 'taskTimes'], result => {
-            if (result.hasOwnProperty('tasks')) {
-                this.setState({tasks: result.tasks});
-            }
-            if (result.hasOwnProperty('taskTimes')) {
-                this.setState({taskTimes: result.taskTimes});
-            }
+        this.updateTimer = this.updateTimer.bind(this);
+        setInterval(this.updateTimer, 60000);
+        this.state = {showAddTask: false, tasks: {}, today: [], past: [], showByTask: true};
+        chrome.storage.local.get({tasks: {}, today: [], past: []}, r => {
+            this.setState({tasks: r.tasks, today: r.today, past: r.past})
         });
     }
     
-    updateTimers() {
-        chrome.storage.local.get(['taskTimes'], result => {
-            if (result.hasOwnProperty('taskTimes')) {
-                this.setState({taskTimes: result.taskTimes});
-            }
-        });
+    updateTimer() {
+        if (this.state.playing) {
+            chrome.storage.local.get({today: {}}, r => {
+                this.setState({today: r.today.tasks});
+            });
+        }
     }
     
-    onToggle(taskId) {
-        var tasks = this.state.tasks;
-        tasks[taskId].playing = !tasks[taskId].playing;
-        this.setState({tasks: tasks});
-        chrome.storage.local.set({tasks: tasks});
+    onToggle(taskID) {
+        if (this.state.playing == taskID) {
+            this.setState({playing: false});
+            chrome.storage.local.set({playing: false});
+        } else {
+            this.setState({playing: taskID});
+            chrome.storage.local.set({playing: taskID});
+        }
     }
     
     onDelete(taskId) {
+        // does not yet delete activity, just the task from the menu
         var tasks = this.state.tasks;
         delete tasks[taskId];
-        this.setState({tasks: tasks}, () => chrome.storage.local.set({tasks: this.state.tasks}));
+        this.setState({tasks: tasks});
+        chrome.storage.local.set({tasks: this.state.tasks});
     }
     
     onCreate(taskId, taskDetails) {
         chrome.storage.local.set({
-            tasks: {...this.state.tasks, [taskId]: {...taskDetails, playing: false}}, 
-            taskTimes: {...this.state.taskTimes, [taskId]: 0}
+            tasks: {...this.state.tasks, [taskId]: taskDetails}, 
         });
         this.setState(prevState => ({
-            tasks: {...prevState.tasks, [taskId]: {...taskDetails, playing: false}}, 
-            taskTimes: {...prevState.taskTimes, [taskId]: 0},
+            tasks: {...prevState.tasks, [taskId]: taskDetails}, 
             showAddTask: false
         }));
     }
     
     render() {
-        const taskItems = Object.keys(this.state.tasks).map(task => 
-            <Task taskId={task}
-                  playing={this.state.tasks[task].playing}
-                  onToggle={this.onToggle} 
-                  onDelete={this.onDelete}
-                  time={this.state.taskTimes[task]}
-            />); 
-        return (
-            <div className="popupContainer">
-                <div className="popupHeader">
-                    Activities
-                    <a href="#" onClick={
-                        () => this.setState({showAddTask: !this.state.showAddTask})}>
-                        <img src={addBtn} className={
-                            "newTaskBtn" + 
-                            (this.state.showAddTask ? "Hide" : "Show")}/>
-                    </a>
-                </div>
-                <div className={"newTaskMenu" + 
-                                (this.state.showAddTask ? "Show" : "Hide")}>
-                    <TaskForm onSubmit={this.onCreate}/>
-                </div>
-                <div className="popupBody">
-                    <div className="taskList">
-                        {taskItems}
+        if (this.state.showByTask) {
+            var todayItems = this.state.today.map(task =>
+                <Task taskID={task.taskID}
+                      playing={this.state.playing == task.taskID}
+                      time={task.time}
+                      onToggle={this.onToggle}
+                      onDelete={this.onDelete}
+                  />);
+            var pastItems = this.state.past.map(day =>
+                <Past tasks={day.tasks} date={day.date}/>);
+            var ret = (
+                <div className="popupContainer">
+                    <div className="popupHeader">
+                        Activities
+                        <a href="#" onClick={
+                            () => this.setState({showAddTask: !this.state.showAddTask})}>
+                            <img src={addBtn} className={
+                                "newTaskBtn" + 
+                                (this.state.showAddTask ? "Hide" : "Show")}/>
+                        </a>
                     </div>
-                </div>
-            </div>
+                    <div className={"newTaskMenu" + 
+                                    (this.state.showAddTask ? "Show" : "Hide")}>
+                        <TaskForm onSubmit={this.onCreate}/>
+                    </div>
+                </div>);
+        } else {
+            var ret = (
+                <div className="popupBody">
+                    <div className="todayContainer">
+                        {todayItems}
+                    </div>
+                    {pastItems}
+                </div>);
+        }
+        return (
+            <>
+            {ret}
+            </>
         );
     }
 }

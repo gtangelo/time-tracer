@@ -7,6 +7,8 @@ import delBtn from './assets/deleteIcon.png';
 import playBtn from './assets/playIcon.png';
 import pauseBtn from './assets/deleteIcon.png';
 
+// This component is for tasks that can be recorded.
+
 export default class Task extends React.Component {
     constructor(props) {
         super(props);
@@ -16,18 +18,18 @@ export default class Task extends React.Component {
     
     onToggle() {
         this.setState({playing: !this.state.playing});
-        this.props.onToggle(this.props.taskId);
+        this.props.onToggle(this.props.taskID);
     }
     
     onDelete() {
-        this.props.onDelete(this.props.taskId);
+        this.props.onDelete(this.props.taskID);
     }
     
     render() {
         return (
             <div className="taskContainer">
                 <div className="taskInfo">
-                    {this.props.taskId}
+                    {this.props.taskID}
                     <br/>
                     {this.props.time}
                 </div>
