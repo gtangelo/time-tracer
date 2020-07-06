@@ -1,7 +1,6 @@
 /* global chrome */
 
 import React from 'react';
-import Fade from 'react-reveal/Fade';
 import TaskForm from './TaskForm.js'
 import './Popup.css';
 
@@ -14,7 +13,7 @@ export default class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.onToggle = this.onToggle.bind(this);
-        this.createNewTask = this.createNewTask.bind(this);
+        this.onCreate = this.onCreate.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.updateTimers = this.updateTimers.bind(this);
         setInterval(this.updateTimers, 1000);
@@ -50,15 +49,15 @@ export default class Popup extends React.Component {
         this.setState({tasks: tasks}, () => chrome.storage.local.set({tasks: this.state.tasks}));
     }
     
-    createNewTask(taskId) {
-        // Add new task to state, and then also to local storage
+    onCreate(taskId, taskDetails) {
         chrome.storage.local.set({
-            tasks: {...this.state.tasks, [taskId]: {playing: false}}, 
+            tasks: {...this.state.tasks, [taskId]: {...taskDetails, playing: false}}, 
             taskTimes: {...this.state.taskTimes, [taskId]: 0}
         });
         this.setState(prevState => ({
-            tasks: {...prevState.tasks, [taskId]: {playing: false}}, 
-            taskTimes: {...prevState.taskTimes, [taskId]: 0}
+            tasks: {...prevState.tasks, [taskId]: {...taskDetails, playing: false}}, 
+            taskTimes: {...prevState.taskTimes, [taskId]: 0},
+            showAddTask: false
         }));
     }
     
@@ -75,19 +74,18 @@ export default class Popup extends React.Component {
                 <div className="popupHeader">
                     Time Tracer
                         <div className="popupActions">
-                            <a href="#" onClick={() => this.setState({showAddTask: !this.state.showAddTask})}>
-                                <img src={addBtn} className={"newTaskBtn" + (this.state.showAddTask ? "Hide" : "Show")}/>
+                            <a href="#" onClick={
+                                () => this.setState({showAddTask: !this.state.showAddTask
+                            })}>
+                                <img src={addBtn} className={
+                                    "newTaskBtn" + 
+                                    (this.state.showAddTask ? "Hide" : "Show")
+                                }/>
                             </a>
                         </div>
                 </div>
                 <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
-                    <a href="#" onClick={this.createNewTask.bind(null, "hi")}>
-                    <Fade delay = {500} >
-                    <TaskForm style={{ display: (this.state.showAddTask ? 'block' : 'none') }}/>
-
-                        <img src={tickBtn} className={"tickBtn"}/>
-                        </Fade>
-                    </a>
+                    <TaskForm onSubmit={this.onCreate}/>
                 </div>
                 <div className="popupBody">
                     <div className="taskList">
