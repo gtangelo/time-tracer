@@ -16,7 +16,7 @@ export default class Popup extends React.Component {
         this.onCreate = this.onCreate.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.updateTimers = this.updateTimers.bind(this);
-        setInterval(this.updateTimers, 1000);
+        setInterval(this.updateTimers, 60000);
         this.state = {showAddTask: false, tasks: {}, taskTimes: {}};
         chrome.storage.local.get(['tasks', 'taskTimes'], result => {
             if (result.hasOwnProperty('tasks')) {
@@ -72,19 +72,16 @@ export default class Popup extends React.Component {
         return (
             <div className="popupContainer">
                 <div className="popupHeader">
-                    Time Tracer
-                        <div className="popupActions">
-                            <a href="#" onClick={
-                                () => this.setState({showAddTask: !this.state.showAddTask
-                            })}>
-                                <img src={addBtn} className={
-                                    "newTaskBtn" + 
-                                    (this.state.showAddTask ? "Hide" : "Show")
-                                }/>
-                            </a>
-                        </div>
+                    Activities
+                    <a href="#" onClick={
+                        () => this.setState({showAddTask: !this.state.showAddTask})}>
+                        <img src={addBtn} className={
+                            "newTaskBtn" + 
+                            (this.state.showAddTask ? "Hide" : "Show")}/>
+                    </a>
                 </div>
-                <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
+                <div className={"newTaskMenu" + 
+                                (this.state.showAddTask ? "Show" : "Hide")}>
                     <TaskForm onSubmit={this.onCreate}/>
                 </div>
                 <div className="popupBody">
