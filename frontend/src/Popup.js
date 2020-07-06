@@ -1,7 +1,8 @@
 /* global chrome */
 
 import React from 'react';
-
+import Fade from 'react-reveal/Fade';
+import TaskForm from './TaskForm.js'
 import './Popup.css';
 
 import Task from './Task.js';
@@ -81,7 +82,11 @@ export default class Popup extends React.Component {
                 </div>
                 <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
                     <a href="#" onClick={this.createNewTask.bind(null, "hi")}>
+                    <Fade delay = {500} >
+                    <TaskForm style={{ display: (this.state.showAddTask ? 'block' : 'none') }}/>
+
                         <img src={tickBtn} className={"tickBtn"}/>
+                        </Fade>
                     </a>
                 </div>
                 <div className="popupBody">
