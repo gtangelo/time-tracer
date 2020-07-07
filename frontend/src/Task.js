@@ -25,22 +25,32 @@ export default class Task extends React.Component {
         this.props.onDelete(this.props.taskID);
     }
     
+    time() {
+        var hrs = Math.floor(this.props.time / 60);
+        if (hrs < 10) {
+            hrs = "0" + hrs;
+        }
+        var mins = this.props.time % 60;
+        if (mins < 10) {
+            mins = "0" + mins;
+        }
+        return hrs + ":" + mins;
+    }
+    
     render() {
         return (
             <div className="taskContainer">
                 <div className="taskInfo">
+                <div className="taskColor"/>
+                <div className="taskID">
                     {this.props.taskID}
-                    <br/>
-                    {this.props.time}
                 </div>
-                <div className="taskActions">
-                    <img src={infoBtn} className="taskActionBtn"/>
-                    <a href="#" onClick={this.props.onDelete.bind(null, this.props.taskId)}>
-                        <img src={delBtn}  className="taskActionBtn"/>
-                    </a>
-                    <a href="#" onClick={this.onToggle}>
-                        <img src={this.state.playing ? pauseBtn : playBtn} className="taskActionBtn"/>
-                    </a>
+                </div>
+                <div className="taskStart" onClick={this.onToggle}>
+                    <img src={this.state.playing ? pauseBtn : playBtn} className="taskStartImg"/>
+                    <div className="taskStartTxt">
+                    {this.props.time ? this.time() : "START"}
+                    </div>
                 </div>
             </div>
         );

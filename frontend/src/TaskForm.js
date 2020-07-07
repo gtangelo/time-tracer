@@ -14,7 +14,8 @@ export default class TaskForm extends React.Component {
     }
 
     handleSubmitForm() {
-        this.props.onSubmit(this.state.taskID, {
+        this.props.onSubmit({
+            taskID: this.state.taskID,
             empID: this.state.empID,
             wbs: this.state.wbs,
             clientName: this.state.clientName

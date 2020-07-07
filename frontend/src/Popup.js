@@ -1,27 +1,43 @@
 /* global chrome */
 
 import React from 'react';
-import TaskForm from './TaskForm.js'
+
+import ActivityScreen from './ActivityScreen.js';
+import HistoryScreen from './HistoryScreen.js';
 import './Popup.css';
-
-import Task from './Task.js';
-import Past from './Past.js';
-
-import addBtn from './assets/addIcon.png';
-import tickBtn from './assets/tickIcon.png';
 
 export default class Popup extends React.Component {
     constructor(props) {
         super(props);
-        this.onToggle = this.onToggle.bind(this);
-        this.onCreate = this.onCreate.bind(this);
-        this.onDelete = this.onDelete.bind(this);
+        this.setPlaying = this.setPlaying.bind(this);
+        this.createTask = this.createTask.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
         this.updateTimer = this.updateTimer.bind(this);
         setInterval(this.updateTimer, 60000);
-        this.state = {showAddTask: false, tasks: {}, today: [], past: [], showByTask: true};
-        chrome.storage.local.get({tasks: {}, today: [], past: []}, r => {
-            this.setState({tasks: r.tasks, today: r.today, past: r.past})
+        var dummyData = this.dummyData();
+        this.state = {...dummyData, showByTask: false, playing: false}
+        chrome.storage.local.set(dummyData);
+        /*
+        this.state = {tasks: [], today: {}, past: [], showByTask: true, playing: false};
+        chrome.storage.local.get({tasks: [], today: {}, past: [], playing: false}, r => {
+            this.setState({tasks: [], today: r.today, past: r.past, playing: r.playing})
         });
+        */
+    }
+    
+    dummyData() {
+        chrome.storage.local.clear();
+        return {
+            tasks: [{taskID: "Meeting"}, {taskID: "Break"}],
+            today: {
+                tasks: [{taskID: "Meeting", time: 61}, {taskID: "Break", time: 5}], 
+                date: "7/7/2020"
+            },
+            past: [{tasks: [{taskID: "Meeting", time: 20}], date: "6/7/2020"},
+                   {tasks: [{taskID: "Break", time: 124}], date: "5/7/2020"}
+            ],
+            playing: false
+        }
     }
     
     updateTimer() {
@@ -32,74 +48,65 @@ export default class Popup extends React.Component {
         }
     }
     
-    onToggle(taskID) {
-        if (this.state.playing == taskID) {
-            this.setState({playing: false});
-            chrome.storage.local.set({playing: false});
-        } else {
-            this.setState({playing: taskID});
-            chrome.storage.local.set({playing: taskID});
-        }
+    setPlaying(taskID) {
+        this.state.playing = taskID;
+        chrome.storage.local.set({playing: taskID});
     }
     
-    onDelete(taskId) {
+    deleteTask(taskID) {
         // does not yet delete activity, just the task from the menu
         var tasks = this.state.tasks;
-        delete tasks[taskId];
+        for (var i = 0; i < tasks.length; i++) {
+            if (tasks.taskID == taskID) {
+                tasks.splice(i, 1);
+                break;
+            }
+        }
         this.setState({tasks: tasks});
-        chrome.storage.local.set({tasks: this.state.tasks});
+        chrome.storage.local.set({tasks: tasks});
     }
     
-    onCreate(taskId, taskDetails) {
+    createTask(taskDetails) {
+        var tasks = this.state.tasks;
+        tasks.push(taskDetails);
         chrome.storage.local.set({
-            tasks: {...this.state.tasks, [taskId]: taskDetails}, 
+            tasks: tasks, 
         });
         this.setState(prevState => ({
-            tasks: {...prevState.tasks, [taskId]: taskDetails}, 
+            tasks: tasks, 
             showAddTask: false
         }));
     }
     
     render() {
-        if (this.state.showByTask) {
-            var todayItems = this.state.today.map(task =>
-                <Task taskID={task.taskID}
-                      playing={this.state.playing == task.taskID}
-                      time={task.time}
-                      onToggle={this.onToggle}
-                      onDelete={this.onDelete}
-                  />);
-            var pastItems = this.state.past.map(day =>
-                <Past tasks={day.tasks} date={day.date}/>);
-            var ret = (
-                <div className="popupContainer">
-                    <div className="popupHeader">
-                        Activities
-                        <a href="#" onClick={
-                            () => this.setState({showAddTask: !this.state.showAddTask})}>
-                            <img src={addBtn} className={
-                                "newTaskBtn" + 
-                                (this.state.showAddTask ? "Hide" : "Show")}/>
-                        </a>
-                    </div>
-                    <div className={"newTaskMenu" + 
-                                    (this.state.showAddTask ? "Show" : "Hide")}>
-                        <TaskForm onSubmit={this.onCreate}/>
-                    </div>
-                </div>);
-        } else {
-            var ret = (
-                <div className="popupBody">
-                    <div className="todayContainer">
-                        {todayItems}
-                    </div>
-                    {pastItems}
-                </div>);
-        }
         return (
-            <>
-            {ret}
-            </>
+            <div className="popupContainer">
+                {
+                    this.state.showByTask
+                ? 
+                    <ActivityScreen
+                        tasks={this.state.tasks}
+                        playing={this.state.playing}
+                        setPlaying={this.setPlaying}
+                        createTask={this.createTask}
+                        deleteTask={this.deleteTask}
+                    /> 
+                : 
+                    <HistoryScreen
+                        today={this.state.today}
+                        playing={this.state.playing}
+                        setPlaying={this.setPlaying}
+                        past={this.state.past}
+                    />
+                }
+            </div>
         );
     }
 }
+/*
+<HistoryScreen
+                        today={this.state.today}
+                        past={this.state.past}
+                        setPlaying={this.setPlaying}
+                    />
+*/

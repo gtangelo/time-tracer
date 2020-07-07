@@ -7,6 +7,8 @@ import delBtn from './assets/deleteIcon.png';
 
 // This component is for tasks that do not have a record button.
 
+// replace play/pause button with a pencil for editing the time.
+
 export default class PastTask extends React.Component {
     render() {
         return (
@@ -15,12 +17,6 @@ export default class PastTask extends React.Component {
                     {this.props.taskID}
                     <br/>
                     {this.props.time}
-                </div>
-                <div className="taskActions">
-                    <img src={infoBtn} className="taskActionBtn"/>
-                    <a href="#">
-                        <img src={delBtn} className="taskActionBtn"/>
-                    </a>
                 </div>
             </div>
         );
