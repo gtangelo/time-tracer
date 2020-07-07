@@ -1,7 +1,6 @@
 import React from 'react';
 import './TaskForm.css';
 
-
 export default class TaskForm extends React.Component {
     constructor(props) {
         super(props)
@@ -28,49 +27,47 @@ export default class TaskForm extends React.Component {
 
         return (
             <>
-            <label for="empID">Emp ID:</label>
-                <input
-                    type="text"
-                    name="empID"
-                    placeholder="Emp ID"
-                    onChange={(e) => this.setState({ empID: e.target.value })}
-                />
-              
-           
-                <label for="taskName">Task Name:</label>
+        <div id = "task">
                 <input
                     type="text"
                     name="taskName"
                     placeholder="Task Name"
                     onChange={(e) => this.setState({ taskID: e.target.value })}
                 />
-          
-                <label for="wbsName">WBS Name:</label>
+                  <button onClick={this.handleSubmitForm}> </button>
+        </div>
+        <div id = "fields">
+            <label for="empID">Emp ID:</label>
+                <input
+                    type="text"
+                    name="empID"
+                    onChange={(e) => this.setState({ empID: e.target.value })}
+                />
+              
+           
+                <label for="wbsName">WBS:</label>
                 <select
                     name="wbsName"
                     onChange={(e) => this.setState({ wbs: e.target.value })}>
-                    <option value="">WBS</option>
                     <option value="wbs1"> WBS 1</option>
                     <option value="wbs2"> WBS 2</option>
                     <option value="wbs3"> WBS 3</option>
                 </select>
            
           
-                <label for="teamName">Team Name:</label>
+                <label for="teamName">Team:</label>
                 <select
                     name="teamName"
                     onChange={(e) => this.setState({ teamName: e.target.value })}>
-                    <option value="">Team Name</option>
                     <option value="team1"> Team 1</option>
                     <option value="team2"> Team 2</option>
                     <option value="wbs3"> Team 3</option>
                 </select>
           
-                <label for="clientName">Client Name:</label>
+                <label for="clientName">Client</label>
                 <select
                     name="clientName"
                     onChange={(e) => this.setState({ clientName: e.target.value })}>
-                    <option value= ""> Client Name</option>
                     <option value="ausGov"> Australian Gov</option>
                     <option value="mcdonalds"> McDonald's</option>
                     <option value="volvo"> Volvo</option>
@@ -79,8 +76,8 @@ export default class TaskForm extends React.Component {
                     <option value="volkswagen"> Volkswagen </option>
                     <option value="nokia"> Nokia </option>
                 </select>
-
-                <button onClick={this.handleSubmitForm}> Submit </button>
+            </div>  
+              
             </>
         );
     }

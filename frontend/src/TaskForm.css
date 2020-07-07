@@ -1,9 +1,66 @@
+
+
 label {
  display: inline-block;
- width: 80px;
+ width: 60px;
  text-align: left;
+ padding-left: 20px;
+ text-transform: uppercase;
+ font-weight: bolder;
+ 
 }
 input {
-    width: 80px;
-  
+    width: 96px;
+    background: transparent;
+    
+}
+
+select {
+    width: 100px;
+    background: transparent;
+    border: none;
+   
+}
+#fields {
+  padding-top: 50px;
+}
+
+#fields input {
+    background-color: white;
+    border: none;
+}
+
+#fields select {
+    background-color: white;
+}
+
+#task { 
+    padding-left: 10px;
+    display: inline;
+}
+
+
+#task input {
+    padding-top: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 14px;
+    width: 160px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#task button {
+    background-image: url(./assets/addIcon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 18px;
+    width: 18px;
+    border: none;
+    opacity: 0.75;
+
 }
