@@ -1,5 +1,5 @@
 .popupContainer {
-    width: 200px;
+    width: 300px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
     border-radius: 1px;
@@ -9,22 +9,22 @@
 }
 
 .popupHeader {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 900;
-    font-size: 30px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
     text-align: center;
 }
 
 .popupBody {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 20px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 16px;
     border-top: 2px solid rgba(0,0,0,0.5);
     padding: 5px;
 }
 
 .newTaskMenuShow {
-    height: 200px;
-    background-color: rgba(0,0,0,0.05);
+    height: 250px;
+    background-color: #282828;
     transition: height 1s ease-in-out , border-color 1s ease-in-out , background-color 1s ease-in-out;
     border-top: 2px solid rgba(0,0,0,0.5);
     overflow-y: hidden;

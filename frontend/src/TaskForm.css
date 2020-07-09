@@ -1,28 +1,28 @@
 
 
 label {
- display: inline-block;
- width: 60px;
- text-align: left;
- padding-left: 20px;
- text-transform: uppercase;
- font-weight: bolder;
- 
-}
-input {
-    width: 96px;
-    background: transparent;
-    
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    padding-left: 20px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: 2px solid #E69736;
+    border-radius: 35px;
+    background: #E69736;
+    margin-bottom: 5px;
+    margin: 10px;
 }
 
-select {
-    width: 100px;
+select, input {
+    width: 140px;
     background: transparent;
     border: none;
-   
+    height: 20px;
 }
+
 #fields {
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 #fields input {
@@ -40,27 +40,31 @@ select {
 }
 
 
-#task input {
+#taskName input {
     padding-top: 20px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
     line-height: 14px;
-    width: 160px;
-    text-align: center;
+    width: 140px;
     border: none;
     border-bottom: 1px solid black;
 }
 
 #task button {
-    background-image: url(./assets/addIcon.png);
+    /*background-image: url(./assets/addIcon.png);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-    height: 18px;
-    width: 18px;
-    border: none;
-    opacity: 0.75;
-
+    background-position: center;*/
+    width: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: 2px solid #969CA9;
+    border-radius: 35px;
+    background: #969CA9;
+    margin-bottom: 5px;
+    margin: 10px;
+    float: right;
 }
