@@ -67,4 +67,5 @@ select, input {
     margin-bottom: 5px;
     margin: 10px;
     float: right;
+    cursor: pointer;
 }

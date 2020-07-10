@@ -2,10 +2,10 @@ import React from 'react';
 
 import './Task.css';
 
-import infoBtn from './assets/infoIcon.png';
-import delBtn from './assets/deleteIcon.png';
-import playBtn from './assets/playIcon.png';
-import pauseBtn from './assets/deleteIcon.png';
+import info from './assets/info.png';
+import del from './assets/delete.png';
+import play from './assets/play.png';
+import pause from './assets/pause.png';
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -26,20 +26,21 @@ export default class Task extends React.Component {
     render() {
         return (
             <div className="taskContainer">
-                <div className="taskInfo">
-                    {this.props.taskId}
-                    <br/>
+                <div className="taskTimeDisplay" placeholder="NULL">
                     {this.props.time}
                 </div>
                 <div className="taskActions">
-                    <img src={infoBtn} className="taskActionBtn"/>
-                    <a href="#" onClick={this.props.onDelete.bind(null, this.props.taskId)}>
-                        <img src={delBtn}  className="taskActionBtn"/>
-                    </a>
                     <a href="#" onClick={this.onToggle}>
-                        <img src={this.state.playing ? pauseBtn : playBtn} className="taskActionBtn"/>
+                        <img src={this.state.playing ? pause : play} className="action-button"/>
+                    </a>
+                    <a href="#" onClick={this.props.onDelete.bind(null, this.props.taskId)}>
+                        <img src={del}  className="delete-button"/>
                     </a>
                 </div>
+                <div className="taskIDdisplay" placeholder="Task Name">
+                    {this.props.taskId}
+                </div>
+                <img src={info} className="info-button"/>
             </div>
         );
     }

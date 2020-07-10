@@ -71,9 +71,9 @@ export default class Popup extends React.Component {
             />); 
         return (
             <div className="popupContainer">
-                <div className="popupHeader">
-                    Time Tracer
-                        <div className="popupActions">
+                <div>
+                    <div className="popupHeader">Time Tracer</div>
+                        {/* <div className="popupActions">
                             <a href="#" onClick={
                                 () => this.setState({showAddTask: !this.state.showAddTask
                             })}>
@@ -82,16 +82,24 @@ export default class Popup extends React.Component {
                                     (this.state.showAddTask ? "Hide" : "Show")
                                 }/>
                             </a>
-                        </div>
+                        </div> */}
                 </div>
-                <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
+                {/* <div className={"newTaskMenu" + (this.state.showAddTask ? "Show" : "Hide")}>
                     <TaskForm onSubmit={this.onCreate}/>
-                </div>
+                </div> */}
+
+                <div className="popupHeader">Task Log</div>
                 <div className="popupBody">
                     <div className="taskList">
                         {taskItems}
                     </div>
                 </div>
+
+                <div className="popupHeader">Add Task</div>
+                <div className="addTaskMenu">
+                    <TaskForm onSubmit={this.onCreate}/>
+                </div>
+
             </div>
         );
     }
