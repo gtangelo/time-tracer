@@ -7,6 +7,11 @@ import HistoryScreen from './HistoryScreen.js';
 
 import './Popup.css';
 
+import activityBtn from './assets/timerIcon.png';
+import historyBtn from './assets/historyIcon.png';
+
+import logo from './assets/icon16.png';
+
 export default class Popup extends React.Component {
     constructor(props) {
         super(props);
@@ -22,10 +27,27 @@ export default class Popup extends React.Component {
         });
     }
     
+    setIcon(colour) {
+        colour = colour.slice(0,-1)+",0.5)";
+        var canvas = document.createElement("canvas");
+        canvas.width = 16;
+        canvas.height = 16;
+        var context = canvas.getContext("2d");
+        var img = new Image();
+        img.onload = () => {
+            context.beginPath();
+            context.arc(7.5,8.1,6.84,0,2*Math.PI,false);
+            context.fillStyle = colour;
+            context.fill();
+            context.drawImage(img, 0, 0);
+            chrome.browserAction.setIcon({imageData: context.getImageData(0,0,16,16)});
+        };
+        img.src = logo;
+    }
+    
     updateTimer() {
         if (this.state.playing) {
             chrome.storage.local.get({today: {}}, r => {
-                console.log(r);
                 this.setState({today: r.today});
             });
         }
@@ -35,6 +57,17 @@ export default class Popup extends React.Component {
         this.state.playing = taskID;
         chrome.storage.local.set({playing: taskID});
         this.setState({playing: taskID});
+        if (!taskID) {
+            this.setIcon("rgba(255,255,255)");
+            chrome.browserAction.setTitle({title: "Time Tracer - Paused"});
+        } else {
+            for (var i = 0; i < this.state.tasks.length; i++) {
+                if (this.state.tasks[i].taskID == taskID) {
+                    this.setIcon(this.state.tasks[i].colour);
+                }
+            }
+            chrome.browserAction.setTitle({title: "Tracking: " + taskID});
+        }
     }
     
     deleteTask(taskID) {
@@ -68,10 +101,14 @@ export default class Popup extends React.Component {
                 <div className="menu">
                     <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
                          onClick={() => this.setState({showByTask: true})}
-                    />
+                    >
+                        <img className="menuBtnImg" src={activityBtn}/>
+                    </div>
                     <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
                          onClick={() => this.setState({showByTask: false})}
-                    />
+                    >
+                        <img className="menuBtnImg" src={historyBtn}/>
+                    </div>
                 </div>
                 </div>
                 <div className="screen">
@@ -87,6 +124,7 @@ export default class Popup extends React.Component {
                     />
                 : 
                     <HistoryScreen
+                        tasks={this.state.tasks}
                         today={this.state.today}
                         playing={this.state.playing}
                         setPlaying={this.setPlaying}

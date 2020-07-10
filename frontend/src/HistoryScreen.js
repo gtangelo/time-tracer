@@ -41,14 +41,20 @@ export default class HistoryScreen extends React.Component {
     
     render() {
         const totalTime = this.time(this.props.today.tasks);
-        const todayItems = this.props.today.tasks.map(task =>
-            <Task taskID={task.taskID}
-                  playing={this.props.playing == task.taskID}
-                  time={task.time}
-                  onToggle={this.setPlaying}
-              />);
+        const todayItems = this.props.today.tasks.map(task => {
+            for (var i = 0; i < this.props.tasks.length; i++) {
+                if (this.props.tasks[i].taskID == task.taskID) {
+                    return <Task taskID={task.taskID}
+                                playing={this.props.playing == task.taskID}
+                                time={task.time}
+                                colour={this.props.tasks[i].colour}
+                                onToggle={this.setPlaying}
+                            />
+                }
+            }
+        });
         const pastItems = this.props.past.map(day =>
-            <Past tasks={day.tasks} date={day.date} time={this.time(day.tasks)}/>);
+            <Past allTasks={this.props.tasks} tasks={day.tasks} date={day.date} time={this.time(day.tasks)}/>);
         return (
         <>
             <div className="popupHeader">

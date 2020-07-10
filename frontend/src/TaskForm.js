@@ -8,7 +8,8 @@ export default class TaskForm extends React.Component {
             empID: '',
             taskID: '',
             wbs: '',
-            clientName: ''
+            clientName: '',
+            colour: "rgba(0,255,0)"
         };
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
@@ -18,7 +19,8 @@ export default class TaskForm extends React.Component {
             taskID: this.state.taskID,
             empID: this.state.empID,
             wbs: this.state.wbs,
-            clientName: this.state.clientName
+            clientName: this.state.clientName,
+            colour: this.state.colour
         });
     }
 

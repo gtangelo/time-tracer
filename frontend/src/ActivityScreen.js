@@ -29,6 +29,7 @@ export default class ActivityScreen extends React.Component {
             <Task taskID={task.taskID}
                   playing={task.taskID == this.props.playing}
                   onToggle={this.setPlaying}
+                  colour={task.colour}
             />);
         
         return (

@@ -35,7 +35,7 @@ let day = date.getDate() + '/' + date.getMonth() + '/' + date.getYear();
 chrome.storage.local.clear();
 chrome.storage.local.set(
     {
-        tasks: [{taskID: "Meeting"}, {taskID: "Break"}],
+        tasks: [{taskID: "Meeting", colour: "rgba(0,255,0)"}, {taskID: "Break", colour: "rgba(255,0,0)"}],
         today: {
             tasks: [{taskID: "Meeting", time: 61}, {taskID: "Break", time: 5}], 
             date: day

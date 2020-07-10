@@ -27,7 +27,7 @@ export default class PastTask extends React.Component {
         return (
             <div className="taskContainer">
                 <div className="taskInfo">
-                    <div className="taskColor"/>
+                    <div className="taskColor" style={{backgroundColor: this.props.colour}}/>
                     <div className="taskID">
                         {this.props.taskID}
                     </div>
