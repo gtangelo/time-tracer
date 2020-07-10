@@ -1,11 +1,50 @@
 .popupContainer {
-    width: 200px;
+    width: 500px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: row;
     border: 1px solid rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
     border-radius: 1px;
-    padding: 20px;
     padding-top: 0px;
-    align-items: center;
+    margin-top: 0px;
+    align-items: top;
     background-color: #363636;
     color: #9f52dd;
+}
+
+.menuContainer {
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    padding: 0px;
+}
+
+.menu {
+    width: 50px;
+    height: 100px;
+    display: grid;
+    grid-row-gap: 0px;
+    grid-template-columns: auto;
+    padding: 0px;
+}
+
+.screen {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.menuBtnOn {
+    width: 50px;
+    height: 50px;
+    border-bottom: 1px solid white;
+    background-color: green;
+    padding: 0px;
+}
+
+.menuBtnOff {
+    width: 50px;
+    height: 50px;
+    border-bottom: 1px solid white;
+    padding: 0px;
 }

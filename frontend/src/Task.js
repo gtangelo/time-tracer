@@ -3,21 +3,18 @@ import React from 'react';
 import './Task.css';
 
 import infoBtn from './assets/infoIcon.png';
-import delBtn from './assets/deleteIcon.png';
 import playBtn from './assets/playIcon.png';
-import pauseBtn from './assets/deleteIcon.png';
+import pauseBtn from './assets/pauseIcon.png';
 
 // This component is for tasks that can be recorded.
 
 export default class Task extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {playing: this.props.playing};
         this.onToggle = this.onToggle.bind(this);
     }
     
     onToggle() {
-        this.setState({playing: !this.state.playing});
         this.props.onToggle(this.props.taskID);
     }
     
@@ -47,7 +44,7 @@ export default class Task extends React.Component {
                 </div>
                 </div>
                 <div className="taskStart" onClick={this.onToggle}>
-                    <img src={this.state.playing ? pauseBtn : playBtn} className="taskStartImg"/>
+                    <img src={this.props.playing ? pauseBtn : playBtn} className="taskStartImg"/>
                     <div className="taskStartTxt">
                     {this.props.time ? this.time() : "START"}
                     </div>

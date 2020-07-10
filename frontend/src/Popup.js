@@ -4,6 +4,7 @@ import React from 'react';
 
 import ActivityScreen from './ActivityScreen.js';
 import HistoryScreen from './HistoryScreen.js';
+
 import './Popup.css';
 
 export default class Popup extends React.Component {
@@ -13,37 +14,19 @@ export default class Popup extends React.Component {
         this.createTask = this.createTask.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
         this.updateTimer = this.updateTimer.bind(this);
-        setInterval(this.updateTimer, 60000);
-        var dummyData = this.dummyData();
-        this.state = {...dummyData, showByTask: false, playing: false}
-        chrome.storage.local.set(dummyData);
-        /*
-        this.state = {tasks: [], today: {}, past: [], showByTask: true, playing: false};
+        setInterval(this.updateTimer, 1000);
+        this.state = {tasks: [], today: {}, past: [], showByTask: true, playing: false}
         chrome.storage.local.get({tasks: [], today: {}, past: [], playing: false}, r => {
-            this.setState({tasks: [], today: r.today, past: r.past, playing: r.playing})
+            this.setState({tasks: r.tasks, today: r.today, past: r.past, playing: r.playing});
+            console.log(this.state);
         });
-        */
-    }
-    
-    dummyData() {
-        chrome.storage.local.clear();
-        return {
-            tasks: [{taskID: "Meeting"}, {taskID: "Break"}],
-            today: {
-                tasks: [{taskID: "Meeting", time: 61}, {taskID: "Break", time: 5}], 
-                date: "7/7/2020"
-            },
-            past: [{tasks: [{taskID: "Meeting", time: 20}], date: "6/7/2020"},
-                   {tasks: [{taskID: "Break", time: 124}], date: "5/7/2020"}
-            ],
-            playing: false
-        }
     }
     
     updateTimer() {
         if (this.state.playing) {
             chrome.storage.local.get({today: {}}, r => {
-                this.setState({today: r.today.tasks});
+                console.log(r);
+                this.setState({today: r.today});
             });
         }
     }
@@ -51,6 +34,7 @@ export default class Popup extends React.Component {
     setPlaying(taskID) {
         this.state.playing = taskID;
         chrome.storage.local.set({playing: taskID});
+        this.setState({playing: taskID});
     }
     
     deleteTask(taskID) {
@@ -72,15 +56,25 @@ export default class Popup extends React.Component {
         chrome.storage.local.set({
             tasks: tasks, 
         });
-        this.setState(prevState => ({
+        this.setState({
             tasks: tasks, 
-            showAddTask: false
-        }));
+        });
     }
     
     render() {
-        return (
+        return (    
             <div className="popupContainer">
+                <div className="menuContainer">
+                <div className="menu">
+                    <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
+                         onClick={() => this.setState({showByTask: true})}
+                    />
+                    <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
+                         onClick={() => this.setState({showByTask: false})}
+                    />
+                </div>
+                </div>
+                <div className="screen">
                 {
                     this.state.showByTask
                 ? 
@@ -90,7 +84,7 @@ export default class Popup extends React.Component {
                         setPlaying={this.setPlaying}
                         createTask={this.createTask}
                         deleteTask={this.deleteTask}
-                    /> 
+                    />
                 : 
                     <HistoryScreen
                         today={this.state.today}
@@ -99,14 +93,8 @@ export default class Popup extends React.Component {
                         past={this.state.past}
                     />
                 }
+                </div>
             </div>
         );
     }
 }
-/*
-<HistoryScreen
-                        today={this.state.today}
-                        past={this.state.past}
-                        setPlaying={this.setPlaying}
-                    />
-*/

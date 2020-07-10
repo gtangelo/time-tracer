@@ -6,12 +6,13 @@
 // the past.
 
 updateTimer = () => {
-    chrome.storage.local.get({today: {}, past: [], tasks: {}, playing: false}, r => {
+    chrome.storage.local.get({today: {}, past: [], tasks: [], playing: false}, r => {
+        console.log(r.playing);
         if (r.playing) {
             let date = new Date();
-            let day = date.getDate() + '/' + date.getMonth() + '/' + get.getYear();
+            let day = date.getDate() + '/' + date.getMonth() + '/' + date.getYear();
             if (r.today.date == day) {
-                success {
+                success: {
                     for (var i = 0; i < r.today.tasks.length; i++) {
                         if (r.today.tasks[i].taskID == r.playing) {
                             r.today.tasks[i].time++;
@@ -29,4 +30,22 @@ updateTimer = () => {
     });
 }
 
-setInterval(updateTimer, 60000);
+let date = new Date();
+let day = date.getDate() + '/' + date.getMonth() + '/' + date.getYear();
+chrome.storage.local.clear();
+chrome.storage.local.set(
+    {
+        tasks: [{taskID: "Meeting"}, {taskID: "Break"}],
+        today: {
+            tasks: [{taskID: "Meeting", time: 61}, {taskID: "Break", time: 5}], 
+            date: day
+        },
+        past: [{tasks: [{taskID: "Meeting", time: 20}], date: "6/7/2020"},
+               {tasks: [{taskID: "Break", time: 124}], date: "5/7/2020"}
+        ],
+        playing: false,
+        showByTask: true
+    }
+);
+
+setInterval(updateTimer, 1000);
