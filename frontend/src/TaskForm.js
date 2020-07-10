@@ -64,7 +64,7 @@ export default class TaskForm extends React.Component {
                     <option value="wbs3"> Team 3</option>
                 </select>
           
-                <label for="clientName">Client</label>
+                <label for="clientName">Client:</label>
                 <select
                     name="clientName"
                     onChange={(e) => this.setState({ clientName: e.target.value })}>
