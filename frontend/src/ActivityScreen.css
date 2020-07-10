@@ -11,7 +11,7 @@
 .taskList {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-size: 10px;
-    height: 250px;
+    height: 220px;
     justify-content: space-around;
     align-items: center;
     background-color: #282828;
@@ -19,6 +19,7 @@
     grid-row-gap: 5px;
     padding: 5px;
     margin: 5px;
+    
 }
 
 .newTaskMenuShow {

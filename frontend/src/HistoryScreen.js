@@ -55,17 +55,19 @@ export default class HistoryScreen extends React.Component {
                 Timeline
             </div>
             <div className="daysContainer">
-                <div className="todayContainer">
+             
                     <div className="dayHeading">
                         <div className="dateHeading">
                             Today
                         </div>
+
                         <div className="timeHeading">
                             {totalTime}
                         </div>
+                    
                     </div>
                     {todayItems}
-                </div>
+           
                 {pastItems}
             </div>
         </>

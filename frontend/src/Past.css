@@ -1,4 +1,4 @@
-.dayContainer {
+/* .dayContainer {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 20px;
     padding: 5px;
@@ -6,9 +6,6 @@
     grid-row-gap: 10px;
 }
 
-.dayHeading {
-    column-count: 2;
-}
 
 .dateHeading {
     text-align: left;
@@ -24,4 +21,4 @@
     font-size: 18pt;
     font-weight: 400;
     color: #bdbdbd;
-}
+} */

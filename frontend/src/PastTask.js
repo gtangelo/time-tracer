@@ -25,18 +25,17 @@ export default class PastTask extends React.Component {
 
     render() {
         return (
+            <div className="container">
             <div className="taskContainer">
-                <div className="taskInfo">
-                    <div className="taskColor"/>
-                    <div className="taskID">
-                        {this.props.taskID}
-                    </div>
+                <div className="taskID">
+                    {this.props.taskID}
                 </div>
                 <div className="taskStart">
                     <div className="taskStartTxt">
                         {this.time()}
                     </div>
                 </div>
+            </div>
             </div>
         );
     }

@@ -2,36 +2,49 @@
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-weight: 600;
     font-size: 16px;
-    text-align: left;
     border-bottom: 1px solid #282828;
-    padding-bottom: 2px;
+    margin: 5px;
+}
+
+.daysContainer {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #282828;
+    display: grid;
+    grid-row-gap: 5px;
     margin: 5px;
 }
 
 .todayContainer {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
     font-size: 20px;
-    padding: 5px;
     display: grid;
     grid-row-gap: 10px;
+    margin: 5px;
 }
 
 .dayHeading {
     column-count: 2;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FAF9F9;
+    border-bottom: 1px solid #FAF9F9;
+    width: 320px;
+    margin: 5px;
 }
 
 .dateHeading {
-    text-align: left;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 700;
-    font-size: 18pt;
-    color: #bdbdbd;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FAF9F9;
+    margin: 5px;
 }
 
 .timeHeading {
     text-align: right;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18pt;
-    font-weight: 400;
-    color: #bdbdbd;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+    color: #FAF9F9;
 }
