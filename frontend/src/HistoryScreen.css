@@ -1,13 +1,11 @@
 .popupHeader {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 900;
-    font-size: 30px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
     text-align: left;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
+    border-bottom: 1px solid #282828;
+    padding-bottom: 2px;
+    margin: 5px;
 }
 
 .todayContainer {

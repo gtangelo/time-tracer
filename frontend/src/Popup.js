@@ -5,6 +5,8 @@ import React from 'react';
 import ActivityScreen from './ActivityScreen.js';
 import HistoryScreen from './HistoryScreen.js';
 
+import addTask from './assets/historyIcon.png';
+
 import './Popup.css';
 
 export default class Popup extends React.Component {
@@ -65,14 +67,18 @@ export default class Popup extends React.Component {
         return (    
             <div className="popupContainer">
                 <div className="menuContainer">
-                <div className="menu">
-                    <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
-                         onClick={() => this.setState({showByTask: true})}
-                    />
-                    <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
-                         onClick={() => this.setState({showByTask: false})}
-                    />
-                </div>
+                    
+                        <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
+                            onClick={() => this.setState({showByTask: true})}
+                        >
+                            <img className="image" src={addTask}/>
+                        </div>
+                        <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
+                            onClick={() => this.setState({showByTask: false})}
+                        >
+                            <img className="image" src={addTask}/>
+                        </div>
+                    
                 </div>
                 <div className="screen">
                 {
