@@ -97,21 +97,19 @@ export default class Popup extends React.Component {
     render() {
         return (    
             <div className="popupContainer">
-                <div className="menuContainer">
                 <div className="menu">
-                    <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
+                    <div className="menuBtn"
                          onClick={() => this.setState({showByTask: true})}
                     >
                         <img className="menuBtnImg" src={activityBtn}/>
                     </div>
-                    <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
+                    <div className="menuBtn"
                          onClick={() => this.setState({showByTask: false})}
                     >
                         <img className="menuBtnImg" src={historyBtn}/>
                     </div>
                 </div>
-                </div>
-                <div className="screen">
+                <div className={"menuSlide"+(this.state.showByTask?"Left":"Right")}/>
                 {
                     this.state.showByTask
                 ? 
@@ -131,7 +129,6 @@ export default class Popup extends React.Component {
                         past={this.state.past}
                     />
                 }
-                </div>
             </div>
         );
     }

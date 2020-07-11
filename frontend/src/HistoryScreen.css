@@ -1,5 +1,4 @@
 .popupHeader {
-    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 900;
     font-size: 30px;
     text-align: left;
@@ -11,7 +10,6 @@
 }
 
 .todayContainer {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 20px;
     padding: 5px;
     display: grid;
@@ -24,7 +22,6 @@
 
 .dateHeading {
     text-align: left;
-    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 700;
     font-size: 18pt;
     color: #bdbdbd;
@@ -32,7 +29,6 @@
 
 .timeHeading {
     text-align: right;
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 18pt;
     font-weight: 400;
     color: #bdbdbd;

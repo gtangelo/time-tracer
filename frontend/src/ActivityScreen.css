@@ -1,5 +1,4 @@
 .popupHeader {
-    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 900;
     font-size: 30px;
     text-align: left;
@@ -11,7 +10,6 @@
 }
 
 .taskList {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 20px;
     border-top: 2px solid rgba(0,0,0,0.5);
     padding: 5px;
@@ -21,7 +19,7 @@
 
 .newTaskMenuShow {
     height: 120px;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(189,0,255,0.05);
     transition: height 1s ease-in-out , border-color 1s ease-in-out , background-color 1s ease-in-out;
     border-top: 2px solid rgba(0,0,0,0.5);
     overflow-y: hidden;
@@ -40,7 +38,7 @@
     height: 20px;
     opacity: 0.5;
     transition: 1s transform ease-in-out;
-    transform: rotate(0deg);
+    transform: rotate(-45deg);
 }
 
 .newTaskBtnShow:hover {
@@ -52,7 +50,7 @@
     height: 20px;
     opacity: 0.5;
     transition: 1s transform ease-in-out;
-    transform: rotate(45deg);
+    transform: rotate(0deg);
 }
 
 .newTaskBtnHide:hover {
