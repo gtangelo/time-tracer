@@ -1,0 +1,84 @@
+/* .newTaskMenuHide {
+    height: 0px;
+    background-color: #282828;
+    transition: height 1s ease-in-out , background-color 1s ease-in-out;
+    overflow-y: hidden;
+    margin: 5px;
+} */
+
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    padding-left: 20px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: 2px solid #E69736;
+    border-radius: 35px;
+    background: #E69736;
+    margin-bottom: 5px;
+    margin: 10px;
+}
+
+select {
+    width: 190px;
+    background: transparent;
+    border: none;
+    height: 20px;
+}
+
+input {
+    width: 185px;
+    background: transparent;
+    border: none;
+    height: 20px;
+}
+
+#fields {
+  padding-top: 10px;
+}
+
+#fields input {
+    background-color: white;
+    border: none;
+}
+
+#fields select {
+    background-color: white;
+}
+
+#task { 
+    padding-left: 10px;
+    display: inline;
+}
+
+
+#taskName input {
+    padding-top: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 14px;
+    width: 140px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#task button {
+    /*background-image: url(./assets/addIcon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;*/
+    width: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: 2px solid #969CA9;
+    border-radius: 35px;
+    background: #969CA9;
+    margin-bottom: 5px;
+    margin: 10px;
+    float: right;
+    cursor: pointer;
+}

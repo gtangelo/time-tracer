@@ -1,6 +1,6 @@
 .dayContainer {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 20px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 14px;
     padding: 5px;
     display: grid;
     grid-row-gap: 10px;
@@ -8,20 +8,24 @@
 
 .dayHeading {
     column-count: 2;
+    border-bottom: 1px solid #FAF9F9;
+    margin: 5px;
 }
 
 .dateHeading {
-    text-align: left;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 700;
-    font-size: 18pt;
-    color: #bdbdbd;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FAF9F9;
+    margin: 5px;
+
 }
 
 .timeHeading {
     text-align: right;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18pt;
-    font-weight: 400;
-    color: #bdbdbd;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+    color: #FAF9F9;
+
 }

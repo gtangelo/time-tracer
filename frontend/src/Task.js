@@ -35,20 +35,23 @@ export default class Task extends React.Component {
     }
     
     render() {
+
         console.log(this.props.colour);
         return (
-            <div className="taskContainer">
-                <div className="taskInfo">
-                    <div className="taskColor" style={{backgroundColor: this.props.colour}}/>
-                    <div className="taskID">
-                        {this.props.taskID}
-                    </div>
-                </div>
-                <div className="taskStart" onClick={this.onToggle}>
-                    <img src={this.props.playing ? pauseBtn : playBtn} className="taskStartImg"/>
-                        <div className="taskStartTxt">
-                        {this.props.time ? this.time() : "START"}
+            <div>
+                <div className="taskContainer">
+                    <div className="taskInfo">
+                        <div className="taskColor" style={{backgroundColor: this.props.colour}}/>
+                        <div className="taskID">
+                            {this.props.taskID}
                         </div>
+                    </div>
+                    <div className="taskStart" onClick={this.onToggle}>
+                        <img src={this.props.playing ? pauseBtn : playBtn} className="taskStartImg"/>
+                            <div className="taskStartTxt">
+                            {this.props.time ? this.time() : "START"}
+                            </div>
+                    </div>
                 </div>
             </div>
         );

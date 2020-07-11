@@ -98,18 +98,19 @@ export default class Popup extends React.Component {
         return (    
             <div className="popupContainer">
                 <div className="menu">
-                    <div className="menuBtn"
-                         onClick={() => this.setState({showByTask: true})}
-                    >
-                        <img className="menuBtnImg" src={activityBtn}/>
-                    </div>
-                    <div className="menuBtn"
-                         onClick={() => this.setState({showByTask: false})}
-                    >
-                        <img className="menuBtnImg" src={historyBtn}/>
-                    </div>
+                    
+                        <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
+                            onClick={() => this.setState({showByTask: true})}
+                        >
+                            <img className={"menuBtnImg"+(this.state.showByTask?"On":"Off")} src={activityBtn}/>
+                        </div>
+                        <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
+                            onClick={() => this.setState({showByTask: false})}
+                        >
+                            <img className={"menuBtnImg"+(this.state.showByTask?"Off":"On")} src={historyBtn}/>
+                        </div>
                 </div>
-                <div className={"menuSlide"+(this.state.showByTask?"Left":"Right")}/>
+                <div className={"menuBtn"+(this.state.showByTask?"Right":"Left")}/>
                 {
                     this.state.showByTask
                 ? 

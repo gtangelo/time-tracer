@@ -1,35 +1,50 @@
 .popupHeader {
-    font-weight: 900;
-    font-size: 30px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
     text-align: left;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
+    border-bottom: 1px solid #282828;
+    height: 20px;
+    margin: 5px;
+    padding-bottom: 3px;
+    padding-left: 2px;
+}
+
+.pastTaskGreyBox {
+    display: block;
+    background-color: #282828;
+    margin: 5px;
+    min-height: 505px;
+    padding: 5px;
 }
 
 .todayContainer {
-    font-size: 20px;
-    padding: 5px;
+    padding: 2px;
     display: grid;
     grid-row-gap: 10px;
 }
 
 .dayHeading {
     column-count: 2;
+    border-bottom: 1px solid #FAF9F9;
+    margin: 5px;
 }
 
 .dateHeading {
-    text-align: left;
-    font-weight: 700;
-    font-size: 18pt;
-    color: #bdbdbd;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FAF9F9;
+    margin: 5px;
+
 }
 
 .timeHeading {
     text-align: right;
-    font-size: 18pt;
-    font-weight: 400;
-    color: #bdbdbd;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+    color: #FAF9F9;
+    padding-right: 5px;
+
 }

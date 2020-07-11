@@ -12,7 +12,7 @@ import addBtn from './assets/deleteIcon.png';
 export default class ActivityScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {showAddTask: false};
+        this.state = {showAddTask: true};
         this.setPlaying = this.setPlaying.bind(this);
     }
     
@@ -34,8 +34,18 @@ export default class ActivityScreen extends React.Component {
         
         return (
             <>
-                <div className="popupHeader">
-                    Activities
+                <div className="titleHeader">
+                    Task Log
+                </div>
+
+                <div className="greyBox">
+                    <div className="taskList">
+                        {tasks}
+                    </div>
+                </div>
+
+                <div className="titleHeader">
+                    Add Task
                     <a href="#" onClick={
                         () => this.setState({showAddTask: !this.state.showAddTask})}>
                         <img src={addBtn} className={
@@ -43,13 +53,12 @@ export default class ActivityScreen extends React.Component {
                             (this.state.showAddTask ? "Hide" : "Show")}/>
                     </a>
                 </div>
+
                 <div className={"newTaskMenu" + 
                                 (this.state.showAddTask ? "Show" : "Hide")}>
                     <TaskForm onSubmit={this.props.createTask}/>
                 </div>
-                <div className="taskList">
-                    {tasks}
-                </div>
+
             </>
         );
     }

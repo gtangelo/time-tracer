@@ -1,56 +1,69 @@
-.popupHeader {
-    font-weight: 900;
-    font-size: 30px;
+.titleHeader {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
     text-align: left;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
+    border-bottom: 1px solid #282828;
+    height: 20px;
+    margin: 5px;
+    padding-bottom: 3px;
+    padding-left: 2px;
 }
 
-.taskList {
-    font-size: 20px;
-    border-top: 2px solid rgba(0,0,0,0.5);
+.greyBox {
+    display: block;
+    background-color: #282828;
+    margin: 5px;
+    min-height: 220px;
     padding: 5px;
-    display: grid;
-    grid-row-gap: 10px;
 }
+
+
+/* .taskList {
+    font-size: 14px;
+    padding: 5px;
+    margin: 5px;
+    display: table-row;
+    padding: 20px;
+    height: 500px;
+} */
 
 .newTaskMenuShow {
-    height: 120px;
-    background-color: rgba(189,0,255,0.05);
-    transition: height 1s ease-in-out , border-color 1s ease-in-out , background-color 1s ease-in-out;
-    border-top: 2px solid rgba(0,0,0,0.5);
+    height: 250px;
+    background-color: #282828;
+    transition: height 1s ease-in-out , background-color 1s ease-in-out;
     overflow-y: hidden;
+    margin: 5px;
 }
 
 .newTaskMenuHide {
     height: 0px;
-    background-color: rgba(0,0,0,0);
-    transition: height 1s ease-in-out , border-color 1s ease-in-out , background-color 1s ease-in-out;
-    border-top: 2px solid rgba(0,0,0,0);
+    background-color: #282828;
+    transition: height 1s ease-in-out , background-color 1s ease-in-out;
     overflow-y: hidden;
+    margin: 5px;
 }
 
 .newTaskBtnShow {
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
+    width: 15px;
+    height: 15px;
     transition: 1s transform ease-in-out;
     transform: rotate(-45deg);
+    margin: 5px;
+    float: right;
 }
 
 .newTaskBtnShow:hover {
-    opacity: 1;
+    opacity: 0.5;
 }
 
 .newTaskBtnHide {
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
+    width: 15px;
+    height: 15px;
     transition: 1s transform ease-in-out;
     transform: rotate(0deg);
+    margin: 5px;
+    float: right;
 }
 
 .newTaskBtnHide:hover {

@@ -1,13 +1,11 @@
  /* global chrome */
 
 import React from 'react';
-import TaskForm from './TaskForm.js'
 import './HistoryScreen.css';
 
 import Task from './Task.js';
 import Past from './Past.js';
 
-import addBtn from './assets/deleteIcon.png';
 
 export default class HistoryScreen extends React.Component {
     constructor(props) {
@@ -58,9 +56,10 @@ export default class HistoryScreen extends React.Component {
         return (
         <>
             <div className="popupHeader">
-                Timeline
+                Past Task Timeline
             </div>
-            <div className="daysContainer">
+
+            <div className="pastTaskGreyBox">
                 <div className="todayContainer">
                     <div className="dayHeading">
                         <div className="dateHeading">
