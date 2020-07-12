@@ -6,7 +6,7 @@ export default class TaskForm extends React.Component {
         super(props)
         this.state = {
             empID: '',
-            taskID: '',
+            taskID: 'Placeholder Task',
             wbs: '',
             clientName: '',
             colour: "rgba(0,255,0)"
