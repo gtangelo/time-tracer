@@ -20,8 +20,20 @@ export default class Popup extends React.Component {
         this.deleteTask = this.deleteTask.bind(this);
         this.updateTimer = this.updateTimer.bind(this);
         setInterval(this.updateTimer, 1000);
-        this.state = {tasks: [], today: {}, past: [], showByTask: true, playing: false}
-        chrome.storage.local.get({tasks: [], today: {}, past: [], playing: false}, r => {
+        this.state = {
+            tasks: [],
+            today: {},
+            past: [], 
+            // showByTask is the main menu
+            showByTask: true, 
+            playing: false
+        }
+        chrome.storage.local.get({
+            tasks: [], 
+            today: {}, 
+            past: [], 
+            playing: false}, 
+            r => {
             this.setState({tasks: r.tasks, today: r.today, past: r.past, playing: r.playing});
             console.log(this.state);
         });
@@ -54,7 +66,6 @@ export default class Popup extends React.Component {
     }
     
     setPlaying(taskID) {
-        this.state.playing = taskID;
         chrome.storage.local.set({playing: taskID});
         this.setState({playing: taskID});
         if (!taskID) {
@@ -62,7 +73,7 @@ export default class Popup extends React.Component {
             chrome.browserAction.setTitle({title: "Time Tracer - Paused"});
         } else {
             for (var i = 0; i < this.state.tasks.length; i++) {
-                if (this.state.tasks[i].taskID == taskID) {
+                if (this.state.tasks[i].taskID === taskID) {
                     this.setIcon(this.state.tasks[i].colour);
                 }
             }
@@ -74,7 +85,7 @@ export default class Popup extends React.Component {
         // does not yet delete activity, just the task from the menu
         var tasks = this.state.tasks;
         for (var i = 0; i < tasks.length; i++) {
-            if (tasks.taskID == taskID) {
+            if (tasks.taskID === taskID) {
                 tasks.splice(i, 1);
                 break;
             }
@@ -98,7 +109,6 @@ export default class Popup extends React.Component {
         return (    
             <div className="popupContainer">
                 <div className="menu">
-                    
                         <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
                             onClick={() => this.setState({showByTask: true})}
                         >
@@ -110,7 +120,6 @@ export default class Popup extends React.Component {
                             <img className={"menuBtnImg"+(this.state.showByTask?"Off":"On")} src={historyBtn}/>
                         </div>
                 </div>
-                <div className={"menuBtn"+(this.state.showByTask?"Right":"Left")}/>
                 {
                     this.state.showByTask
                 ? 

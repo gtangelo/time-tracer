@@ -17,17 +17,18 @@ export default class ActivityScreen extends React.Component {
     }
     
     setPlaying(taskID) {
-        if (this.props.playing == taskID) {
+        if (this.props.playing === taskID) {
             this.props.setPlaying(false);
         } else {
             this.props.setPlaying(taskID);
         }
     }
     
+    
     render() {
         const tasks = this.props.tasks.map(task => 
             <Task taskID={task.taskID}
-                  playing={task.taskID == this.props.playing}
+                  playing={task.taskID === this.props.playing}
                   onToggle={this.setPlaying}
                   colour={task.colour}
             />);
