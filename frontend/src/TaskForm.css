@@ -1,10 +1,4 @@
-/* .newTaskMenuHide {
-    height: 0px;
-    background-color: #282828;
-    transition: height 1s ease-in-out , background-color 1s ease-in-out;
-    overflow-y: hidden;
-    margin: 5px;
-} */
+
 
 label {
     display: inline-block;
@@ -66,10 +60,6 @@ input {
 }
 
 #task button {
-    /*background-image: url(./assets/addIcon.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;*/
     width: 150px;
     text-align: center;
     text-transform: uppercase;
@@ -81,4 +71,18 @@ input {
     margin: 10px;
     float: right;
     cursor: pointer;
+}
+
+/*Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
+.validation {
+    background: url(./assets/error.png);
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-size: 15px;
+    color:white;
+    font-weight: bold;
+
+    padding-left: 35px;
+
 }
