@@ -27,11 +27,15 @@ export default class ActivityScreen extends React.Component {
     
     render() {
         const tasks = this.props.tasks.map(task => 
-            <Task taskID={task.taskID}
+            <div>
+                <Task taskID={task.taskID}
                   playing={task.taskID === this.props.playing}
                   onToggle={this.setPlaying}
                   colour={task.colour}
-            />);
+                />
+                <div className="break"/>
+            </div>
+            );
         
         return (
             <>

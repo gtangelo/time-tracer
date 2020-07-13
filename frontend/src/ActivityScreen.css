@@ -69,3 +69,7 @@
 .newTaskBtnHide:hover {
     opacity: 1;
 }
+
+.break {
+    height: 10px
+}
