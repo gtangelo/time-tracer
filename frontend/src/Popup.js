@@ -9,8 +9,10 @@ import './Popup.css';
 
 import activityBtn from './assets/timerIcon.png';
 import historyBtn from './assets/historyIcon.png';
+import uploadBtn from './assets/uploadIcon.png';
 
 import logo from './assets/icon16.png';
+import UploadScreen from './UploadScreen.js';
 
 export default class Popup extends React.Component {
     constructor(props) {
@@ -25,7 +27,7 @@ export default class Popup extends React.Component {
             today: {},
             past: [], 
             // showByTask is the main menu
-            showByTask: true, 
+            showByTask: 0, 
             playing: false
         }
         chrome.storage.local.get({
@@ -106,39 +108,60 @@ export default class Popup extends React.Component {
     }
     
     render() {
+
+        var tab = this.state.showByTask;
+        var tabState0 = "Off";
+        var tabState1 = "Off";
+        var tabState2 = "Off";
+        if (this.state.showByTask === 0) {
+            tab = <ActivityScreen
+                tasks={this.state.tasks}
+                playing={this.state.playing}
+                setPlaying={this.setPlaying}
+                createTask={this.createTask}
+                deleteTask={this.deleteTask}
+            />
+            tabState0 = "On"
+        } else if (this.state.showByTask === 1) {
+            tab = <HistoryScreen
+                tasks={this.state.tasks}
+                today={this.state.today}
+                playing={this.state.playing}
+                setPlaying={this.setPlaying}
+                past={this.state.past}
+            />
+            tabState1 = "On"
+        } else if (this.state.showByTask === 2) {
+            tab = <UploadScreen
+                tasks={this.state.tasks}
+                today={this.state.today}
+                playing={this.state.playing}
+                setPlaying={this.setPlaying}
+                past={this.state.past}
+            />
+            tabState2 = "On"
+        }
+
         return (    
             <div className="popupContainer">
                 <div className="menu">
-                        <div className={"menuBtn"+(this.state.showByTask?"On":"Off")}
-                            onClick={() => this.setState({showByTask: true})}
+                        <div className={"menuBtn"+(tabState0)}
+                            onClick={() => this.setState({showByTask: 0})}
                         >
-                            <img className={"menuBtnImg"+(this.state.showByTask?"On":"Off")} src={activityBtn}/>
+                            <img className={"menuBtnImg"+(tabState0)} src={activityBtn}/>
                         </div>
-                        <div className={"menuBtn"+(this.state.showByTask?"Off":"On")}
-                            onClick={() => this.setState({showByTask: false})}
+                        <div className={"menuBtn"+(tabState1)}
+                            onClick={() => this.setState({showByTask: 1})}
                         >
-                            <img className={"menuBtnImg"+(this.state.showByTask?"Off":"On")} src={historyBtn}/>
+                            <img className={"menuBtnImg"+(tabState1)} src={historyBtn}/>
+                        </div>
+                        <div className={"menuBtn"+(tabState2)}
+                            onClick={() => this.setState({showByTask: 2})}
+                        >
+                            <img className={"menuBtnImg"+(tabState2)} src={uploadBtn}/>
                         </div>
                 </div>
-                {
-                    this.state.showByTask
-                ? 
-                    <ActivityScreen
-                        tasks={this.state.tasks}
-                        playing={this.state.playing}
-                        setPlaying={this.setPlaying}
-                        createTask={this.createTask}
-                        deleteTask={this.deleteTask}
-                    />
-                : 
-                    <HistoryScreen
-                        tasks={this.state.tasks}
-                        today={this.state.today}
-                        playing={this.state.playing}
-                        setPlaying={this.setPlaying}
-                        past={this.state.past}
-                    />
-                }
+                {tab}
             </div>
         );
     }

@@ -1,7 +1,7 @@
 .dayContainer {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-size: 14px;
-    padding: 5px;
+    padding: 2px;
     display: grid;
     grid-row-gap: 10px;
 }
@@ -27,5 +27,6 @@
     font-size: 20pt;
     font-weight: bold;
     color: #FAF9F9;
+    padding-right: 5px;
 
 }

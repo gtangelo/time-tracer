@@ -56,7 +56,7 @@ export default class HistoryScreen extends React.Component {
         return (
         <>
             <div className="popupHeader">
-                Past Task Timeline
+                Task Timeline
             </div>
 
             <div className="pastTaskGreyBox">
