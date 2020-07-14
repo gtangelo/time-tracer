@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Popup from './Popup.js';
 
-
 /** 
  * 
  * =================================================================================
@@ -15,8 +14,11 @@ import Popup from './Popup.js';
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f4475adb14c4ec68ad8fedaa97221591e58a1adf
 function App() {
   return (
     <Popup/>
