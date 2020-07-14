@@ -1,14 +1,12 @@
-/* global chrome */
-
 import React from 'react';
 import TaskForm from './TaskForm.js'
 import './ActivityScreen.css';
 
 import Task from './Task.js';
-import Past from './Past.js';
 
 import addBtn from './assets/deleteIcon.png';
 
+// Activity screen of the extension
 export default class ActivityScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -24,46 +22,39 @@ export default class ActivityScreen extends React.Component {
         }
     }
     
-    
     render() {
         const tasks = this.props.tasks.map(task => 
             <div>
-                <Task taskID={task.taskID}
-                  playing={task.taskID === this.props.playing}
-                  onToggle={this.setPlaying}
-                  colour={task.colour}
+                <Task
+                    taskID={task.taskID}
+                    playing={task.taskID === this.props.playing}
+                    onToggle={this.setPlaying}
+                    colour={task.colour}
+                    time={task.time}
                 />
                 <div className="break"/>
             </div>
-            );
+        );
         
         return (
             <>
-                <div className="titleHeader">
-                    Task Log
-                </div>
-
+                <div className="titleHeader">Task Log</div>
                 <div className="greyBox">
-                    <div className="taskList">
-                        {tasks}
-                    </div>
+                    <div className="taskList">{tasks}</div>
                 </div>
-
                 <div className="titleHeader">
                     Add Task
-                    <a href="#" onClick={
-                        () => this.setState({showAddTask: !this.state.showAddTask})}>
-                        <img src={addBtn} className={
-                            "newTaskBtn" + 
+                    <a href="#" onClick={() => 
+                        this.setState({showAddTask: !this.state.showAddTask})}>
+                        <img src={addBtn} className={"newTaskBtn" + 
                             (this.state.showAddTask ? "Hide" : "Show")}/>
                     </a>
                 </div>
 
                 <div className={"newTaskMenu" + 
-                                (this.state.showAddTask ? "Show" : "Hide")}>
+                    (this.state.showAddTask ? "Show" : "Hide")}>
                     <TaskForm onSubmit={this.props.createTask}/>
                 </div>
-
             </>
         );
     }

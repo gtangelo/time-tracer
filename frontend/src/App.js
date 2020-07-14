@@ -3,9 +3,9 @@ import './App.css';
 import Popup from './Popup.js';
 
 function App() {
-  return (
-    <Popup/>
-  );
+	return (
+		<Popup/>
+	);
 }
 
 export default App;

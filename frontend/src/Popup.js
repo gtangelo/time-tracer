@@ -19,8 +19,8 @@ export default class Popup extends React.Component {
         super(props);
         this.setPlaying = this.setPlaying.bind(this);
         this.createTask = this.createTask.bind(this);
-        this.deleteTask = this.deleteTask.bind(this);
         this.updateTimer = this.updateTimer.bind(this);
+        // this.deleteTask = this.deleteTask.bind(this);
         setInterval(this.updateTimer, 1000);
         this.state = {
             tasks: [],
@@ -36,8 +36,12 @@ export default class Popup extends React.Component {
             past: [], 
             playing: false}, 
             r => {
-            this.setState({tasks: r.tasks, today: r.today, past: r.past, playing: r.playing});
-            console.log(this.state);
+            this.setState({
+                tasks: r.tasks, 
+                today: r.today, 
+                past: r.past, 
+                playing: r.playing
+            }); console.log(this.state);
         });
     }
     
@@ -83,18 +87,18 @@ export default class Popup extends React.Component {
         }
     }
     
-    deleteTask(taskID) {
-        // does not yet delete activity, just the task from the menu
-        var tasks = this.state.tasks;
-        for (var i = 0; i < tasks.length; i++) {
-            if (tasks.taskID === taskID) {
-                tasks.splice(i, 1);
-                break;
-            }
-        }
-        this.setState({tasks: tasks});
-        chrome.storage.local.set({tasks: tasks});
-    }
+    // deleteTask(taskID) {
+    //     // does not yet delete activity, just the task from the menu
+    //     var tasks = this.state.tasks;
+    //     for (var i = 0; i < tasks.length; i++) {
+    //         if (tasks.taskID === taskID) {
+    //             tasks.splice(i, 1);
+    //             break;
+    //         }
+    //     }
+    //     this.setState({tasks: tasks});
+    //     chrome.storage.local.set({tasks: tasks});
+    // }
     
     createTask(taskDetails) {
         var tasks = this.state.tasks;
@@ -108,7 +112,6 @@ export default class Popup extends React.Component {
     }
     
     render() {
-
         var tab = this.state.showByTask;
         var tabState0 = "Off";
         var tabState1 = "Off";
@@ -119,7 +122,7 @@ export default class Popup extends React.Component {
                 playing={this.state.playing}
                 setPlaying={this.setPlaying}
                 createTask={this.createTask}
-                deleteTask={this.deleteTask}
+                // deleteTask={this.deleteTask}
             />
             tabState0 = "On"
         } else if (this.state.showByTask === 1) {
@@ -143,24 +146,28 @@ export default class Popup extends React.Component {
         }
 
         return (    
-            
             <div className="popupContainer">
                 <div className="menu">
-                        <div className={"menuBtn"+(tabState0)}
-                            onClick={() => this.setState({showByTask: 0})}
-                        >
-                            <img className={"menuBtnImg"+(tabState0)} src={activityBtn}/>
-                        </div>
-                        <div className={"menuBtn"+(tabState1)}
-                            onClick={() => this.setState({showByTask: 1})}
-                        >
-                            <img className={"menuBtnImg"+(tabState1)} src={historyBtn}/>
-                        </div>
-                        <div className={"menuBtn"+(tabState2)}
-                            onClick={() => this.setState({showByTask: 2})}
-                        >
-                            <img className={"menuBtnImg"+(tabState2)} src={uploadBtn}/>
-                        </div>
+                    <div
+                        className={"menuBtn" + (tabState0)}
+                        onClick={() => this.setState({showByTask: 0})}
+                    >
+                        <img className={"menuBtnImg" + (tabState0)} src={activityBtn}/>
+                    </div>
+
+                    <div
+                        className={"menuBtn" + (tabState1)}
+                        onClick={() => this.setState({showByTask: 1})}
+                    >
+                        <img className={"menuBtnImg" + (tabState1)} src={historyBtn}/>
+                    </div>
+
+                    <div 
+                        className={"menuBtn" + (tabState2)}
+                        onClick={() => this.setState({showByTask: 2})}
+                    >
+                        <img className={"menuBtnImg" + (tabState2)} src={uploadBtn}/>
+                    </div>
                 </div>
                 {tab}
             </div>

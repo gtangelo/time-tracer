@@ -18,10 +18,10 @@ export default class TaskForm extends React.Component {
         this.state = initialState;
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
+
     validate() {
         let taskError = "";
         let selectError = "";
-
 
         if (this.state.taskID.length < 2) {
             taskError = 'Task name is too short!';
@@ -58,7 +58,6 @@ export default class TaskForm extends React.Component {
 
             // Clear the form, which will allow the user to resubmit after
             // correcting errors
-
             this.setState(initialState);
         }
     }
@@ -69,15 +68,12 @@ export default class TaskForm extends React.Component {
                 <div id="fields">
 
                     <label for="taskName">Task Name</label>
-                 
-                        <input
-                            type="text"
-                            name="taskName"
-                            placeholder="Task 1"
-                            onChange={(e) => this.setState({ taskID: e.target.value })}
-                        />
-                       
-             
+                    <input
+                        type="text"
+                        name="taskName"
+                        placeholder="Task 1"
+                        onChange={(e) => this.setState({ taskID: e.target.value })}
+                    />             
 
                     <label for="clientName">Client</label>
                     <select
@@ -106,7 +102,6 @@ export default class TaskForm extends React.Component {
                     </select>
 
                     <label for="empID">EID:</label>
-
                     <select
                         name="empID"
                         onChange={(e) => this.setState({ empID: e.target.value })}>
@@ -125,14 +120,16 @@ export default class TaskForm extends React.Component {
                         <option value="wbs2"> WBS 2</option>
                         <option value="wbs3"> WBS 3</option>
                     </select>
+
                 </div>
                 <div id="task">
-                    <button
-                        onClick={this.handleSubmitForm}>
-                        Create Task
-            </button>
-
-            <div class = "validation"> {this.state.taskError} {this.state.selectError}</div>
+                <button onClick={this.handleSubmitForm}>
+                    Create Task
+                </button>
+                <div class = "validation">
+                    {this.state.taskError}
+                    {this.state.selectError}
+                </div>
                 </div>
             </form>
         );

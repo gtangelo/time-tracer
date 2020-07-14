@@ -1,5 +1,3 @@
- /* global chrome */
-
 import React from 'react';
 import './HistoryScreen.css';
 
@@ -14,7 +12,7 @@ export default class HistoryScreen extends React.Component {
     }
     
     setPlaying(taskID) {
-        if (this.props.playing == taskID) {
+        if (this.props.playing === taskID) {
             this.props.setPlaying(false);
         } else {
             this.props.setPlaying(taskID);
@@ -41,39 +39,41 @@ export default class HistoryScreen extends React.Component {
         const totalTime = this.time(this.props.today.tasks);
         const todayItems = this.props.today.tasks.map(task => {
             for (var i = 0; i < this.props.tasks.length; i++) {
-                if (this.props.tasks[i].taskID == task.taskID) {
-                    return <Task taskID={task.taskID}
-                                playing={this.props.playing == task.taskID}
-                                time={task.time}
-                                colour={this.props.tasks[i].colour}
-                                onToggle={this.setPlaying}
-                            />
+                if (this.props.tasks[i].taskID === task.taskID) {
+                    return <Task
+                        taskID={task.taskID}
+                        playing={this.props.playing === task.taskID}
+                        time={task.time}
+                        colour={this.props.tasks[i].colour}
+                        onToggle={this.setPlaying}
+                    />
                 }
             }
         });
-        const pastItems = this.props.past.map(day =>
-            <Past allTasks={this.props.tasks} tasks={day.tasks} date={day.date} time={this.time(day.tasks)}/>);
-        return (
-        <>
-            <div className="popupHeader">
-                Task Timeline
-            </div>
 
-            <div className="pastTaskGreyBox">
-                <div className="todayContainer">
-                    <div className="dayHeading">
-                        <div className="dateHeading">
-                            Today
+        const pastItems = this.props.past.map(day =>
+            <Past
+                allTasks={this.props.tasks}
+                tasks={day.tasks} 
+                date={day.date} 
+                time={this.time(day.tasks)}
+            />
+        );
+
+        return (
+            <>
+                <div className="popupHeader">Task Timeline</div>
+                <div className="pastTaskGreyBox">
+                    <div className="todayContainer">
+                        <div className="dayHeading">
+                            <div className="dateHeading">Today</div>
+                            <div className="timeHeading">{totalTime}</div>
                         </div>
-                        <div className="timeHeading">
-                            {totalTime}
-                        </div>
+                        {todayItems}
                     </div>
-                    {todayItems}
+                    {pastItems}
                 </div>
-                {pastItems}
-            </div>
-        </>
+            </>
         );
     }
 }

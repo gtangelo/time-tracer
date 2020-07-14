@@ -14,7 +14,7 @@
     display: block;
     background-color: #282828;
     margin: 5px;
-    min-height: 515px;
+    min-height: 510px;
     padding: 5px;
 }
 
@@ -55,7 +55,7 @@
     display: block;
     background-color: #282828;
     margin: 5px;
-    min-height: 400px;
+    min-height: 510px;
     padding: 5px;
 }
 
@@ -71,6 +71,7 @@
     margin-top: 25px;
     margin-left: 115px;
 }
+
 .uploadTxt {
     text-align: center;
     flex-grow: 1;
@@ -79,6 +80,7 @@
     font-weight: 400;
     font-size: 14px;
 }
+
 img {
     width: 15px;
     height: 15px;
