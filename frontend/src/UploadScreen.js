@@ -5,7 +5,10 @@
  
  import Task from './Task.js';
  import Past from './Past.js';
- import uploadBtn from './assets/uploadIcon.png'
+
+ import SendTask from './Send.js'
+ 
+ 
  
  
  export default class UploadScreen extends React.Component {
@@ -35,22 +38,19 @@
      }
      
      render() {
-         const pastItems = this.props.past.map(day =>
-             <Past allTasks={this.props.tasks} tasks={day.tasks} date={day.date} time={this.time(day.tasks)}/>);
-         return (
-         <>
-             <div className="popupHeader">
-                Upload Task
-             </div>
- 
-             <div className="uploadTaskGreyBox">
-                {pastItems}
-                <div className="uploadButton"> 
-                    <img src={uploadBtn}/>
-                    <div className="uploadTxt">Upload</div>
+        const pastItems = this.props.past.map(day =>
+            <Past allTasks={this.props.tasks} tasks={day.tasks} date={day.date} time={this.time(day.tasks)}/>);
+
+        return (
+            <>
+                <div className="popupHeader">
+                    Upload Task
                 </div>
-             </div>
-         </>
+                <div className="uploadTaskGreyBox">
+                    {pastItems}
+                    <SendTask />
+                </div>
+            </>
          );
      }
  }

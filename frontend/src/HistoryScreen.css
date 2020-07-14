@@ -68,6 +68,8 @@
     border-radius: 20px;
     cursor: pointer;
     align-items: center;
+    margin-top: 25px;
+    margin-left: 115px;
 }
 .uploadTxt {
     text-align: center;

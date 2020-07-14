@@ -20,6 +20,7 @@ export default class TaskForm extends React.Component {
             empID: this.state.empID,
             wbs: this.state.wbs,
             clientName: this.state.clientName,
+            teamName: this.state.teamName,
             colour: this.state.colour
         });
     }
