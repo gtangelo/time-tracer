@@ -58,9 +58,6 @@ export default class TaskForm extends React.Component {
                 clientName: this.state.clientName,
                 teamName: this.state.teamName,
                 colour: this.state.colour
-
-
-
             });
 
             // Clear the form, which will allow the user to resubmit after
@@ -73,7 +70,6 @@ export default class TaskForm extends React.Component {
         return (
             <form>
                 <div id="fields">
-
                     <label for="taskName">Task Name</label>
                     <input
                         type="text"
