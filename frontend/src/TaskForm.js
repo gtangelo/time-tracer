@@ -1,6 +1,9 @@
 import React from 'react';
 import './TaskForm.css'
 
+// This component handles and structures the task form
+// which enables the user to add a new task by updating the state
+
 const initialState = {
     empID: '',
     taskID: '',
@@ -19,7 +22,11 @@ export default class TaskForm extends React.Component {
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
 
+    
+    // This function checks that the form is filled out appropriately
+
     validate() {
+        
         let taskError = "";
         let selectError = "";
 
