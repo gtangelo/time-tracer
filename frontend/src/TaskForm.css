@@ -1,10 +1,4 @@
-/* .newTaskMenuHide {
-    height: 0px;
-    background-color: #282828;
-    transition: height 1s ease-in-out , background-color 1s ease-in-out;
-    overflow-y: hidden;
-    margin: 5px;
-} */
+
 
 label {
     display: inline-block;
@@ -66,10 +60,6 @@ input {
 }
 
 #task button {
-    /*background-image: url(./assets/addIcon.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;*/
     width: 150px;
     text-align: center;
     text-transform: uppercase;
@@ -81,4 +71,20 @@ input {
     margin: 10px;
     float: right;
     cursor: pointer;
+}
+
+
+.validation {
+    background: url(./assets/errorIcon.png);
+    opacity: 1;
+    width:150px;
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-size: 15px;
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+    filter: invert(1);
+    padding-left: 35px;
+
 }

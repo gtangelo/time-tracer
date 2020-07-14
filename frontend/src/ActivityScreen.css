@@ -29,7 +29,7 @@
 } */
 
 .newTaskMenuShow {
-    height: 250px;
+    height: 255px;
     background-color: #282828;
     transition: height 1s ease-in-out , background-color 1s ease-in-out;
     overflow-y: hidden;
