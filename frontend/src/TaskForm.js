@@ -8,7 +8,8 @@ const initialState = {
     clientName: '',
     colour: "rgba(0,255,0)",
     teamName: '',
-    taskError: ""
+    taskError: "",
+    selectError: ""
 }
 
 export default class TaskForm extends React.Component {
@@ -20,14 +21,19 @@ export default class TaskForm extends React.Component {
 
     validate() {
         let taskError = "";
+        let selectError = "";
 
 
         if (this.state.taskID.length < 2) {
             taskError = 'Task name is too short!';
         }
 
-        if (taskError) {
-            this.setState({ taskError });
+        if ((!this.state.empID) || (!this.state.wbs) || (!this.state.clientName) || (!this.state.teamName)) {
+            selectError = ' Please check all fields have been selected';
+        }
+
+        if (taskError || selectError) {
+            this.setState({ taskError , selectError});
             return false;
         }
 
@@ -129,7 +135,7 @@ export default class TaskForm extends React.Component {
                         Create Task
             </button>
 
-            <div class = "validation"> {this.state.taskError}</div>
+            <div class = "validation"> {this.state.taskError} {this.state.selectError}</div>
                 </div>
             </form>
         );
